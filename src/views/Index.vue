@@ -6,7 +6,11 @@
         <search/>
         <div class="text-center">
           <button class="btn btn-dark rounded-0 col-2 mr-5">手气不错</button>
-          <button class="btn btn-dark rounded-0 col-2">我要出题</button>
+          <router-link
+            :to="{name: 'Paper'}"
+            class="btn btn-dark rounded-0 col-2">
+            我要出题
+          </router-link>
         </div>
       </b-col>
     </b-row>
@@ -31,9 +35,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .title {
-        font-size: 112px;
-        font-family: "华文细黑", 'Microsoft YaHei', "微软雅黑", 'Noto Sans', serif;
-    }
+  .title {
+    font-size: 112px;
+    font-family: "华文细黑", 'Microsoft YaHei', "微软雅黑", 'Noto Sans', serif;
+  }
 
 </style>

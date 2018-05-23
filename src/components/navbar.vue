@@ -15,7 +15,7 @@
       is-nav>
       <b-navbar-nav v-if="!index">
         <b-nav-item href="#">我要答题</b-nav-item>
-        <b-nav-item href="#">我要出题</b-nav-item>
+        <b-nav-item :to="{name: 'Paper'}">我要出题</b-nav-item>
         <b-nav-item href="#">试试手气</b-nav-item>
       </b-navbar-nav>
       <!-- Right aligned nav items -->

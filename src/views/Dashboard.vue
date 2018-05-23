@@ -1,25 +1,23 @@
 <template>
   <div>
-    <d-row>
+    <b-row>
       <b-col>
-        <div class="white-space"/>
+        <div>
+          Dashboard
+        </div>
       </b-col>
-      <b-col>
-        <div class="white-space"/>
-      </b-col>
-    </d-row>
+    </b-row>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  data () {
+    return {}
+  }
 }
 </script>
 
 <style scoped>
-  .white-space {
-    width: 100%;
-    background-color: white;
-  }
 </style>

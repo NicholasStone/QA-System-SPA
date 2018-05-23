@@ -3,7 +3,7 @@
     v-if="!alerts.read"
     :key="alerts.index"
     :variant="alerts.type"
-    :show="alerts.expire"
+    :show="show"
     dismissible
     @dismissed="read(alerts.index)"
     @dismiss-count-down="countdownChange">
@@ -32,6 +32,11 @@ export default {
   data () {
     return {
       countdown: this.alerts.expire
+    }
+  },
+  computed: {
+    show () {
+      return this.alerts.expire === false ? true : this.alerts.expire
     }
   },
   methods: {

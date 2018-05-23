@@ -5,7 +5,7 @@ import router from '~/router'
 import config from '~/config'
 
 const communicate = axios.create({
-  baseURL: config.apiUrl,
+  baseURL: config.url.api,
   headers: {
     Accept: 'application/prs.qa.v1+json'
   }

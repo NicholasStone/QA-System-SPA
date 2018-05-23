@@ -20,7 +20,7 @@ export default {
         bottom: 0;
         width: 100%;
         height: 100px; /* Set the fixed height of the footer here */
-        line-height: 100px; /* Vertically center the text there */
+        line-height: 100px; /* Vertically center the t there */
         /*background-color: #f5f5f5;*/
     }
 </style>

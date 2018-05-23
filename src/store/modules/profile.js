@@ -58,7 +58,7 @@ export default {
         state.introduction = introduction
       }
     },
-    'SET_PROFILE': (state, {id, name, email, avatar, role, created, updated, introduction}) => {
+    'SET_PROFILE': (state, {id, name, email, avatar, role, atom: {created, updated, introduction}}) => {
       state.id = id
       state.name = name
       state.email = email
@@ -77,7 +77,9 @@ export default {
   actions: {
     getProfile ({commit}) {
       return new Promise((resolve, reject) => {
-        Communication.get('/user')
+        Communication.get('/user', {
+          params: {include: 'atom'}
+        })
           .then(response => {
             commit('SET_PROFILE', response.data)
             resolve()

@@ -4,7 +4,8 @@ import Communication from '~/api/communication'
 
 export default {
   state: {
-    token: TokenCookies.get() ? TokenCookies.get() : '',
+    // token: TokenCookies.get() ? TokenCookies.get() : '',
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9xYS5kZXYiLCJpYXQiOjE1MjcwMzk5NTAsImV4cCI6MTU1Nzc5ODM1MCwibmJmIjoxNTI3MDM5OTUwLCJqdGkiOiJuUm4xQzc1S1kyU0dJVDh1Iiwic3ViIjoyMzMsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.LyKOxa8ABAQgBsR6yoid32kYV62w8kCx4XjUiuqGxNE',
     expiration: TokenCookies.get('expiration') ? TokenCookies.get('expiration') : '',
     type: 'Bearer'
   },

@@ -173,7 +173,7 @@ ajv@^6.1.0:
 
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
-  resolved "https://registry.yarnpkg.com/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
+  resolved "https://registry.yarnpkg.com/align-t/-/align-t-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
   dependencies:
     kind-of "^3.0.2"
     longest "^1.0.1"
@@ -1487,7 +1487,7 @@ center-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/center-align/-/center-align-0.1.3.tgz#aa0d32629b6ee972200411cbd4461c907bc2b7ad"
   dependencies:
-    align-text "^0.1.3"
+    align-t "^0.1.3"
     lazy-cache "^1.0.3"
 
 chai-nightwatch@~0.1.x:
@@ -2573,7 +2573,7 @@ eslint-friendly-formatter@^3.0.0:
     coalescy "1.0.0"
     extend "^3.0.0"
     minimist "^1.2.0"
-    text-table "^0.2.0"
+    t-table "^0.2.0"
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"
@@ -2689,7 +2689,7 @@ eslint@^4.15.0:
     strip-ansi "^4.0.0"
     strip-json-comments "~2.0.1"
     table "4.0.2"
-    text-table "~0.2.0"
+    t-table "~0.2.0"
 
 espree@^3.5.2, espree@^3.5.4:
   version "3.5.4"
@@ -2900,7 +2900,7 @@ extglob@^2.0.4:
 
 extract-text-webpack-plugin@^3.0.0:
   version "3.0.2"
-  resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
+  resolved "https://registry.yarnpkg.com/extract-t-webpack-plugin/-/extract-t-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
   dependencies:
     async "^2.4.1"
     loader-utils "^1.1.0"
@@ -6600,7 +6600,7 @@ right-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/right-align/-/right-align-0.1.3.tgz#61339b722fe6a3515689210d24e14c96148613ef"
   dependencies:
-    align-text "^0.1.1"
+    align-t "^0.1.1"
 
 rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.0, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
@@ -7276,7 +7276,7 @@ test-exclude@^4.1.1:
 
 text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
-  resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
+  resolved "https://registry.yarnpkg.com/t-table/-/t-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
 throat@^4.0.0:
   version "4.1.0"
