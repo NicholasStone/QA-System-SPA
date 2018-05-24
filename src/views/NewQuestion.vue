@@ -2,7 +2,7 @@
   <b-card
     title="新题目"
     sub-title="请填写下列空白">
-    <b-form @submit.stop="submit">
+    <b-form @submit.prevent="submit">
       <b-form-group
         id="question-title-group"
         horizontal
@@ -145,8 +145,7 @@ export default {
     removeOption (index) {
       this.question.options.splice(index, 1)
     },
-    submit (evt) {
-      evt.preventDefault()
+    submit () {
       let data = {
         question: this.question.title,
         type: this.type,
