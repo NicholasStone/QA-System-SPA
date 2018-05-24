@@ -52,8 +52,6 @@ export default {
       })
     },
     success: function ({commit, state}, message) {
-      console.error(message)
-
       commit('ADD_MESSAGE', {
         index: state.index,
         type: 'success',

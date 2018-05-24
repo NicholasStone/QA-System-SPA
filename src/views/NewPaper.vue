@@ -7,64 +7,72 @@
         label-cols="2"
         breakpoint="md"
         label="试卷标题"
+        label-size="lg"
         label-for="paper-title">
         <b-form-input
           id="paper-title"
           v-model="title"
+          size="lg"
           type="text"/>
       </b-form-group>
-      <b-form-row>
+      <small>总分 <b>{{ total_score }}</b></small>
+      <div class="mb-4">加入的题目</div>
+      <b-row
+        v-for="(item, key) in selected"
+        :key="key">
         <b-col cols="2">
-          加入的题目
+          <label class="mb-2"> 第 {{ key+1 }} 题 </label>
+          <div class="w-100"/>
+          <b-button-group>
+            <b-button
+              class="icon-center"
+              variant="danger"
+              size="sm"
+              @click="remove(key)">
+              <icon name="trash-alt"/>
+            </b-button>
+            <b-button
+              v-if="key !== 0"
+              class="icon-center"
+              size="sm"
+              variant="default"
+              @click="swapUp(key)">
+              <icon name="arrow-up"/>
+            </b-button>
+            <b-button
+              v-if="key !== selected.length - 1"
+              class="icon-center"
+              size="sm"
+              variant="default"
+              @click="swapDown(key)">
+              <icon name="arrow-down"/>
+            </b-button>
+          </b-button-group>
+          <b-form-group
+            :label-for="`question-${item.id}-score`"
+            class="mt-2"
+            label-cols="5"
+            label="分数"
+            horizontal>
+            <b-form-input
+              :id="`question-${item.id}-score`"
+              v-model.number="item.score"
+              type="number"
+              size="sm"/>
+          </b-form-group>
         </b-col>
         <b-col>
-          <b-row
-            v-for="(id, key) in selected"
-            :key="key"
-          >
-            <b-col cols="2">
-              <p class="pl-1 pt-3 mb-3"> 第 {{ key+1 }} 题 </p>
-              <b-button-group>
-                <b-button
-                  class="icon-center"
-                  variant="danger"
-                  size="sm"
-                  @click="remove(key)">
-                  <icon name="trash-alt"/>
-                </b-button>
-                <b-button
-                  v-if="key !== 0"
-                  class="icon-center"
-                  size="sm"
-                  variant="default"
-                  @click="swapUp(key)">
-                  <icon name="arrow-up"/>
-                </b-button>
-                <b-button
-                  v-if="key !== selected.length - 1"
-                  class="icon-center"
-                  size="sm"
-                  variant="default"
-                  @click="swapDown(key)">
-                  <icon name="arrow-down"/>
-                </b-button>
-              </b-button-group>
-            </b-col>
-            <b-col>
-              <question :question="getOrigin(id)"/>
-            </b-col>
-          </b-row>
+          <question :question="getOrigin(item)"/>
         </b-col>
-      </b-form-row>
+      </b-row>
       <b-button
         v-b-modal="'question-list'"
-        class="offset-2 col-10"
         variant="outline-primary"
         block>
         添加新题目
       </b-button>
       <b-button
-        class="offset-2 mt-2"
+        class="mt-2"
         variant="success"
         type="submit">
         提交新试卷
@@ -82,18 +90,16 @@
             v-for="(item, key) in questions"
             :id="`${item.id}-checkbox`"
             :key="key"
-            :value="item.id"
+            :value="{id: item.id, score: 10}"
             v-model="selected">
-            <p>
-              试题编号 {{ item.id }}
-            </p>
+            <span>试题编号 {{ item.id }}</span>
             <question :question="item"/>
           </b-form-checkbox>
         </b-container>
         <div
           slot="modal-footer"
           class="modal-footer">
-          已选择题目编号 {{ selected.join(' , ') }}
+          已选择题目编号 {{ selected | pluck_id }}
         </div>
       </b-modal>
     </b-form>
@@ -115,12 +121,23 @@ export default {
     'question': Question,
     'icon': Icon
   },
+  filters: {
+    pluck_id (value) {
+      return value.map(val => val.id).join(' , ')
+    }
+  },
   data () {
     return {
+      id: null,
       title: '',
       questions: [],
       pagination: null,
       selected: []
+    }
+  },
+  computed: {
+    total_score () {
+      return this.selected.reduce((previous, current) => previous + current.score, 0)
     }
   },
   beforeMount () {
@@ -136,10 +153,14 @@ export default {
   },
   methods: {
     submit () {
-      Comm.post('bank/paper', {})
+      if (this.id) {
+        this.attachQuestions()
+      } else {
+        this.createPaper().then(() => this.attachQuestions())
+      }
     },
     getOrigin (value) {
-      return this.questions[value]
+      return this.questions[value.id]
     },
     remove (key) {
       this.selected.splice(key, 1)
@@ -149,6 +170,40 @@ export default {
     },
     swapDown (key) {
       this.selected.splice(key, 2, this.selected[key + 1], this.selected[key])
+    },
+    createPaper () {
+      return new Promise((resolve, reject) => {
+        Comm.post('bank/paper', {
+          title: this.title
+        }).then(resp => {
+          this.$store.dispatch('success', '成功建立试题，id : ' + resp.data.id)
+          this.id = resp.data.id
+          resolve(resp)
+        }).catch(error => {
+          this.$store.dispatch('except', error)
+          reject(error)
+        })
+      })
+    },
+    attachQuestions () {
+      let questions = this.selected.map((item, key) => {
+        return {
+          id: item.id,
+          score: item.score,
+          sequence: key + 1
+        }
+      })
+      return new Promise((resolve, reject) => {
+        Comm.post(`bank/paper/${this.id}/attach`, {questions})
+          .then(resp => {
+            this.$store.dispatch('success', '已添加试题')
+            resolve(resp)
+          })
+          .catch(error => {
+            this.$store.dispatch('except', error)
+            reject(error)
+          })
+      })
     }
     // 不能用普通的零时变量交换方式，需要采用上述方式来让 vue 捕捉到 Array 的 mutation
     // https://stackoverflow.com/questions/41857143/vue-js-swap-array-items
