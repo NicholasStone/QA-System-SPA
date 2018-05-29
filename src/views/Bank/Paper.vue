@@ -5,21 +5,24 @@
       :key="key"
       :title="item.title"
       :sub-title="item.user.name +' 创建于 '+ item.created"
-      class="mb-2 col-10"
-    >
+      class="mb-2 col-10">
       <b-table
         :items="item.questions.data"
         :fields="fields"
         hover
         striped
-        bordered
-      />
+        bordered/>
+      <b-button
+        variant="primary"
+        @click="exam(item.id)">
+        做题
+      </b-button>
     </b-card>
   </b-row>
 </template>
 
 <script>
-import Comm from '../api/communication'
+import Comm from '../../api/communication'
 
 export default {
   name: 'Paper',
@@ -45,6 +48,11 @@ export default {
       .catch(error => {
         this.$store.dispatch('except', error)
       })
+  },
+  methods: {
+    exam (id) {
+      this.$router.push({name: 'Examination', params: {id}})
+    }
   }
 }
 </script>

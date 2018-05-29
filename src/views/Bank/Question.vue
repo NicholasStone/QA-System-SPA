@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import Comm from '../api/communication'
-import Question from '../components/question'
+import Comm from '../../api/communication'
+import Question from '../../components/question'
 
 // todo 分页
 export default {
-  name: 'QuestionList',
+  name: 'Question',
   components: {
     'question': Question
   },
@@ -31,16 +31,15 @@ export default {
   beforeMount () {
     Comm.get('bank/question/' + (this.id ? this.id : ''), {
       params: {
-        include: 'user'
+        include: this.id ? 'user,answer' : 'user'
+      }
+    }).then(resp => {
+      if (this.id) {
+        this.questions.push(resp.data)
+      } else {
+        this.questions = resp.data.data
       }
     })
-      .then(resp => {
-        if (this.id) {
-          this.questions.push(resp.data)
-        } else {
-          this.questions = resp.data.data
-        }
-      })
   }
 }
 </script>

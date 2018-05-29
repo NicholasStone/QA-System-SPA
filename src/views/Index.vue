@@ -5,7 +5,11 @@
         <h1 class="mt-5 title text-center">考拉</h1>
         <search/>
         <div class="text-center">
-          <button class="btn btn-dark rounded-0 col-2 mr-5">手气不错</button>
+          <router-link
+            :to="{name: 'Examination', params: {id: Math.ceil(Math.random() * 200)}}"
+            class="btn btn-dark rounded-0 col-2 mr-5">
+            手气不错
+          </router-link>
           <router-link
             :to="{name: 'Paper'}"
             class="btn btn-dark rounded-0 col-2">

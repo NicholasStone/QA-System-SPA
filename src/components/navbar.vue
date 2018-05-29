@@ -14,9 +14,10 @@
       id="nav_collapse"
       is-nav>
       <b-navbar-nav v-if="!index">
-        <b-nav-item href="#">我要答题</b-nav-item>
-        <b-nav-item :to="{name: 'Paper'}">我要出题</b-nav-item>
-        <b-nav-item href="#">试试手气</b-nav-item>
+        <b-nav-item :to="{name: 'Paper'}">我要答题</b-nav-item>
+        <b-nav-item :to="{name: 'New-Question'}">我要出题</b-nav-item>
+        <b-nav-item :to="{name: 'Examination', params: {id: Math.ceil(Math.random() * 200)}}">试试手气
+        </b-nav-item>
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
@@ -25,11 +26,12 @@
             size="sm"
             class="mr-sm-2"
             type="text"
-            placeholder="Search"/>
+            placeholder="搜索"/>
           <b-button
             size="sm"
             class="my-2 my-sm-0"
-            type="submit">Search
+            type="submit">
+            搜索
           </b-button>
         </b-nav-form>
       </b-navbar-nav>
@@ -40,7 +42,6 @@
           right>
           <!-- Using button-content slot -->
           <template slot="button-content">
-            <!--<em>{{ name }}</em>-->
             <img
               :src="avatar"
               :alt="name"

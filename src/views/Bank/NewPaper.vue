@@ -108,8 +108,8 @@
 </template>
 
 <script>
-import Comm from '../api/communication'
-import Question from '../components/question'
+import Comm from '../../api/communication'
+import Question from '../../components/question'
 import 'vue-awesome/icons/trash-alt'
 import 'vue-awesome/icons/arrow-up'
 import 'vue-awesome/icons/arrow-down'
@@ -132,12 +132,12 @@ export default {
       title: '',
       questions: [],
       pagination: null,
-      selected: []
+      answer: []
     }
   },
   computed: {
     total_score () {
-      return this.selected.reduce((previous, current) => previous + current.score, 0)
+      return this.answer.reduce((previous, current) => previous + current.score, 0)
     }
   },
   beforeMount () {
@@ -163,13 +163,13 @@ export default {
       return this.questions[value.id]
     },
     remove (key) {
-      this.selected.splice(key, 1)
+      this.answer.splice(key, 1)
     },
     swapUp (key) {
-      this.selected.splice(key - 1, 2, this.selected[key], this.selected[key - 1])
+      this.answer.splice(key - 1, 2, this.answer[key], this.answer[key - 1])
     },
     swapDown (key) {
-      this.selected.splice(key, 2, this.selected[key + 1], this.selected[key])
+      this.answer.splice(key, 2, this.answer[key + 1], this.answer[key])
     },
     createPaper () {
       return new Promise((resolve, reject) => {
@@ -186,7 +186,7 @@ export default {
       })
     },
     attachQuestions () {
-      let questions = this.selected.map((item, key) => {
+      let questions = this.answer.map((item, key) => {
         return {
           id: item.id,
           score: item.score,

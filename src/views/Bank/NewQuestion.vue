@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import Comm from '../api/communication'
+import Comm from '../../api/communication'
 // todo validate input
 export default {
   name: 'NewQuestion',

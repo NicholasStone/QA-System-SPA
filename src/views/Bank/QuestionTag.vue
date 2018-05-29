@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Alert from '../components/alert'
-import Comm from '../api/communication'
+import Alert from '../../components/alert'
+import Comm from '../../api/communication'
 
 export default {
   name: 'QuestionTag',

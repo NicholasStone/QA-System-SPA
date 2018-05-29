@@ -32,7 +32,7 @@ export default {
     return {
       catalog: [
         {name: '类型列表', to: {name: 'QuestionTag'}},
-        {name: '题库', to: {name: 'QuestionList'}},
+        {name: '题库', to: {name: 'Question'}},
         {name: '试卷库', to: {name: 'Paper'}}
       ],
       options: [
