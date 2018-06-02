@@ -21,6 +21,7 @@ import Examination from '../views/Exam/Examination'
 import Result from '../views/Exam/Record'
 
 import Notice from '../views/Notice'
+import Search from '../views/Search'
 
 Vue.use(Router)
 
@@ -30,6 +31,7 @@ const router = new Router({
     {path: '/', name: 'Index', component: Index},
     {path: '/register', name: 'Register', component: Register},
     {path: '/sign-in', alias: '/login', name: 'Sign-in', component: SignIn},
+    {path: '/search', name: 'Search', Component: Search, props: true},
     {path: '/home', name: 'Home', component: Dashboard, meta: {auth: true}},
     {path: '/notice/:id', name: 'Notice', component: Notice, props: true, meta: {auth: true}},
     {

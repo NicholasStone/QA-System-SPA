@@ -11,11 +11,12 @@ import alert from './components/alert'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import InstantSearch from 'vue-instantsearch'
 
 import './assert/style.css'
 
 Vue.use(BootstrapVue)
-// Vue.use(VueAxios, Axios)
+Vue.use(InstantSearch)
 
 // Config Vue
 Vue.config.devtools = true
