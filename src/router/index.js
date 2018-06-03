@@ -31,9 +31,16 @@ const router = new Router({
     {path: '/', name: 'Index', component: Index},
     {path: '/register', name: 'Register', component: Register},
     {path: '/sign-in', alias: '/login', name: 'Sign-in', component: SignIn},
-    {path: '/search', name: 'Search', Component: Search, props: true},
     {path: '/home', name: 'Home', component: Dashboard, meta: {auth: true}},
     {path: '/notice/:id', name: 'Notice', component: Notice, props: true, meta: {auth: true}},
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search,
+      props: (router) => {
+        return router.query
+      }
+    },
     {
       path: '/user',
       component: Blank,

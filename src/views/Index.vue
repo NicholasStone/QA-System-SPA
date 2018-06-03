@@ -3,7 +3,7 @@
     <b-row>
       <b-col cols="12">
         <h1 class="mt-5 title text-center">考拉</h1>
-        <search/>
+        <search class="offset-2 col-8"/>
         <div class="text-center">
           <router-link
             :to="{name: 'Examination', params: {id: Math.ceil(Math.random() * 200)}}"

@@ -21,13 +21,15 @@
       </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-form v-if="!index">
+        <b-nav-form v-if="!index && $route.name !== 'Search'">
           <b-form-input
+            v-model="key"
             size="sm"
             class="mr-sm-2"
             type="text"
             placeholder="搜索"/>
           <b-button
+            :to="{name:'Search', query: {q: key}}"
             size="sm"
             class="my-2 my-sm-0"
             type="submit">
@@ -81,7 +83,9 @@ export default {
       brand: '考拉',
       index: false,
       variant: 'fate',
-      path: this.$route.path
+      path: this.$route.path,
+      key: '',
+      search: false
     }
   },
   computed: {
@@ -109,6 +113,6 @@ export default {
 
 <style scoped>
   .avatar {
-    max-width: 50px;
+    max-width: 30px;
   }
 </style>

@@ -1,39 +1,34 @@
 <template>
-  <b-form
-    inline
-    class="page-center mb-3">
-    <div class="form-group col-12 input-group-lg justify-content-center">
-      <label
-        for="search-input"
-        class="sr-only">搜索</label>
-      <div class="input-group col-8 mt-4 mb-4">
+  <div>
+    <div class="form-group">
+      <label class="sr-only">搜索</label>
+      <div class="input-group">
         <input
           id="search-input"
-          v-model="query"
-          type="text"
-          name="search-input"
-          placeholder="找份卷子做做..."
-          class="form-control rounded-0">
-        <div class="input-group-append">
-          <button class="btn btn-dark btn-lg rounded-0">搜索</button>
-        </div>
+          v-model="keys"
+          class="form-control rounded-0"
+          placeholder="找份卷子做做...">
+        <span class="input-group-append">
+          <router-link
+            :to="{name:'Search', query:{q:keys}}"
+            class="btn btn-dark btn-lg rounded-0"
+            type="submit">搜索</router-link>
+        </span>
       </div>
     </div>
-  </b-form>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Search',
-  props: {
-    query: {
-      type: String,
-      default: ''
+  data () {
+    return {
+      keys: ''
     }
   }
 }
 </script>
 
-<style scoped>
-
+<style>
 </style>
