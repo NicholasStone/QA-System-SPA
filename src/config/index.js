@@ -1,7 +1,7 @@
 export default {
   url: {
-    app: 'https://qa.dev',
-    api: 'https://api.qa.dev'
+    app: process.env.NODE_ENV === 'production' ? '/' : 'https://qa.dev',
+    api: process.env.NODE_ENV === 'production' ? '/' : 'https://api.qa.dev'
   },
   search: {
     appId: 'T2TA5RNB5Y',

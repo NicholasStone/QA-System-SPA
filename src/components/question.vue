@@ -20,7 +20,7 @@
         bordered
         striped
         hover/>
-      <p v-if="question.answer">答案: <br>{{ answer(question.answer) }}</p>
+      <p v-if="question.selected">答案: <br>{{ answer(question.selected) }}</p>
     </b-collapse>
   </b-card>
 </template>
@@ -54,7 +54,7 @@ export default {
     }
   },
   methods: {
-    answer (val) {
+    selected (val) {
       if (val instanceof Array) {
         return val.join(',')
       }

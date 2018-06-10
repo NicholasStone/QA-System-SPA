@@ -210,7 +210,6 @@ export default {
         }
       }).then(resp => this.init(resp.data))
         .catch(error => {
-          console.error(error)
           this.paper = false
           this.$store.dispatch('except', error)
         })
@@ -220,7 +219,7 @@ export default {
     init (data) {
       this.paper = data
       this.second_left = data.time_limit * 60
-      this.answer.fill(null, 0, data.questions.length)
+      this.answer.fill('', 0, data.questions.length)
     },
     complete () {
       clearInterval(this.interval)
